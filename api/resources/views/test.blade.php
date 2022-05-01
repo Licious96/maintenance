@@ -1,0 +1,1 @@
+Your requested password is {{$mail}}
