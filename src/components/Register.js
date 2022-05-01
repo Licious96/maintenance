@@ -12,6 +12,8 @@ const Register = () => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('');
     const [errors, setErrors] = useState([])
+    const [studentError, setStudentError] = useState('');
+    const [show, setShow] = useState(false);
 
     const register = async () => {
         const formData = new FormData()
@@ -27,6 +29,10 @@ const Register = () => {
             navigate('/home')
         } catch (error) {
             setErrors(error.response.data)
+            setStudentError('')
+            if (error.response.status === 401) {
+                setStudentError(error.response.data)
+            }
         }
     }
 
@@ -35,46 +41,54 @@ const Register = () => {
     }
 
     return (
-        <div className="be-splash-screen">
-            <div className="be-wrapper be-login">
-                <div className="be-content">
-                    <div className="main-content container-fluid">
-                        <div className="splash-container">
-                            <div className="card card-border-color card-border-color-primary">
-                                <div className="card-header"><div className="be-navbar-header"><h1 className="page-title">Maintenance App</h1></div><span className="splash-description">Please enter your user information.</span></div>
-                                <div className="card-body">
-                                    <form>
-                                        <div className="login-form">
-                                            <span className='text-center text-danger'>{errors.msg}</span>
-                                            <div className="form-group">
-                                                <input className="form-control" onChange={e => setName(e.target.value)} type="text" placeholder="Surname and Initials" />
-                                                {errors?.email ? <span className="text-danger">{errors.name}</span> : null}
-                                            </div>
-                                            <div className="form-group">
-                                                <input className="form-control" onChange={e => setStudent_no(e.target.value)} type="text" placeholder="Student Number" />
-                                                {errors?.email ? <span className="text-danger">{errors.student_no}</span> : null}
-                                            </div>
-                                            <div className="form-group">
-                                                <input className="form-control" onChange={e => setEmail(e.target.value)} type="text" placeholder="Email" />
-                                                {errors?.email ? <span className="text-danger">{errors.email}</span> : null}
-                                            </div>
-                                            <div className="form-group">
-                                                <input className="form-control" onChange={e => setPassword(e.target.value)} type="password" placeholder="Password" />
-                                                {errors?.password ? <span className="text-danger">{errors.password}</span> : null}
-                                            </div>
-                                            <div className="form-group">
-                                                <input className="form-control" onChange={e => setConfirmPassword(e.target.value)} type="password" placeholder="Confirm Password" />
-                                                {errors?.password ? <span className="text-danger">{errors.password}</span> : null}
-                                            </div>
-                                            <div className="form-group row login-submit">
-                                                <div className="col-6"><Link className="btn btn-secondary btn-xl" to="/" type="submit">Login</Link></div>
-                                                <div className="col-6"><button type="button" id='btn' className="btn btn-primary btn-xl" onClick={register}><span className='btn_cnts'>Register</span></button></div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+        <div class="container">
+            <div class="forms">
+                <div class="form login">
+                    <span class="title">Register</span>
+
+                    <form action="#">
+                        <div class="input-field">
+                            <input type="text" onChange={e => setName(e.target.value)} placeholder="Enter your name" required />
+                            <i class="uil uil-user"></i>
                         </div>
+                        {errors?.name ? <span className="text-danger">{errors.name}</span> : null}
+
+                        <div class="input-field">
+                            <input type="text" onChange={e => setStudent_no(e.target.value)} class="password" placeholder="Enter your student number" required />
+                            <i class="uil uil-user"></i>
+                        </div>
+                        {errors?.student_no ? <span className="text-danger">{errors.student_no}</span> : null}
+                        <span className="text-danger">{studentError}</span>
+
+                        <div class="input-field">
+                            <input type="email" onChange={e => setEmail(e.target.value)} class="password" placeholder="Enter your email" required />
+                            <i class="uil uil-envelope icon"></i>
+                        </div>
+                        {errors?.email ? <span className="text-danger">{errors.email}</span> : null}
+
+                        <div class="input-field">
+                            <input type={show ? "text" : "password"} onChange={e => setPassword(e.target.value)} class="password" placeholder="Enter your password" required />
+                            <i class="uil uil-lock icon"></i>
+                            <i class={show ? "uil uil-eye showHidePw" : "uil uil-eye-slash showHidePw"} onClick={() => setShow(!show)}></i>
+                        </div>
+                        {errors?.password ? <span className="text-danger">{errors.password}</span> : 'Password should at least contain one uppercase, one lowercase, numbers and one special character'}
+
+                        <div class="input-field">
+                            <input type={show ? "text" : "password"} onChange={e => setConfirmPassword(e.target.value)} class="password" placeholder="Confirm your password" required />
+                            <i class="uil uil-lock icon"></i>
+                            <i class={show ? "uil uil-eye showHidePw" : "uil uil-eye-slash showHidePw"} onClick={() => setShow(!show)}></i>
+                        </div>
+                        {errors?.password ? <span className="text-danger">{errors.password}</span> : null}
+
+                        <div class="input-field button">
+                            <input type="button" value="Register" onClick={register} />
+                        </div>
+                    </form>
+
+                    <div class="login-signup">
+                        <span class="text">Already a member?
+                            <Link to="/" class="text signup-link"> Login</Link>
+                        </span>
                     </div>
                 </div>
             </div>
