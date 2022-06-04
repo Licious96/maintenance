@@ -1,0 +1,149 @@
+.passwordInput {
+    border: none;
+    outline: blue;
+    width: 80%;
+}
+
+#camera {
+    display: none;
+}
+
+.camera {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.dataTables_wrapper div.dataTables_length label select.form-control-sm {
+    width: 80px
+}
+
+#dark {
+    background-color: #292929 !important;
+}
+
+#dark .navbar {
+    background-color: #292929 !important;
+}
+
+#dark .navbar .page-title {
+    color: #d2d2d2 !important;
+}
+
+#dark .be-left-sidebar {
+    background-color: #292929 !important;
+}
+
+#dark .icon {
+    color: #d2d2d2 !important;
+}
+
+#dark .be-left-sidebar .sidebar-elements>li.active>a>span {
+    color: #d2d2d2;
+}
+
+#dark .user-display {
+    background-color: #292929 !important;
+    border: 1px solid #d2d2d2;
+    color: #d2d2d2;
+}
+
+#dark .card {
+    background-color: #292929 !important;
+    border: 1px solid #d2d2d2;
+    color: #d2d2d2;
+}
+
+#dark .table {
+    background-color: #292929 !important;
+    border: 1px solid #d2d2d2;
+    color: #d2d2d2;
+}
+
+#dark label {
+    color: #d2d2d2;
+}
+
+#dark .form-control {
+    background-color: #292929;
+    color: #d2d2d2;
+}
+
+#dark input {
+    background-color: #292929;
+    color: #d2d2d2;
+}
+
+#dark .be-top-header .navbar-nav>li.dropdown .dropdown-menu {
+    background-color: #292929;
+    color: #d2d2d2;
+}
+
+#dark .be-user-nav>li.dropdown .dropdown-menu .user-info {
+    background-color: #292929;
+    color: #d2d2d2;
+}
+
+#dark .be-top-header .navbar-nav>li.dropdown .dropdown-menu>a {
+    color: #d2d2d2;
+}
+
+#dark .accordion .card-header button {
+    color: #d2d2d2;
+}
+
+section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: url('../images/cesar-carlevarino-aragon-NL_DF0Klepc-unsplash.jpg')no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: block; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+}
+
+.splash-content {
+    max-width: 650px;
+    margin: 60px 100px;
+    z-index: 2;
+}
+
+.splash-info h2 {
+    color: #fff;
+    font-size: 55px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.splash-info p {
+    font-size: 16px;
+    color: #d2d2d2;
+    font-weight: 500;
+    margin-bottom: 40px;
+}
+
+.info-btn {
+    color: #fff;
+    background: #226a80;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: 0.3s;
+}

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate, Navigate } from 'react-router-dom'
 import axios from 'axios'
-import '../App.css'
+import '../css/style.css'
 
 const Login = () => {
 
@@ -9,6 +9,7 @@ const Login = () => {
     const [student_no, setStudent_no] = useState('')
     const [password, setPassword] = useState('')
     const [errors, setErrors] = useState([])
+    const [show, setShow] = useState(false);
 
     const login = async () => {
         const formData = new FormData()
@@ -20,6 +21,7 @@ const Login = () => {
             sessionStorage.setItem('user_id', res.data.id)
             navigate('/home')
         } catch (error) {
+            console.log(error.response.data)
             setErrors(error.response.data)
         }
     }
@@ -29,50 +31,58 @@ const Login = () => {
     }
 
     return (
-        <div class="container">
-        <div class="forms">
-            <div class="form login">
-                <span class="title">Login</span>
+        <div className='body'>
+            <div className="container">
+                <div className="forms">
+                    <div className="form login">
+                        <span className="title">Login</span>
 
-                <form action="#">
+                        <form action="#">
 
-                    {errors?.msg ? <div className='errorMsg'>{errors.msg}</div> : ''}
-                    
-                    <div class="input-field">
-                        <input type="text" onChange={e => setStudent_no(e.target.value)} placeholder="Enter your student number" required />
-                        <i class="uil uil-user"></i>
-                    </div>
-                    {errors?.student_no ? <span className="text-danger">{errors.student_no}</span> : null}
+                            {errors?.msg ? <div className='errorMsg'>{errors.msg}</div> : ''}
 
-                    <div class="input-field">
-                        <input type="password" onChange={e => setPassword(e.target.value)} class="password" placeholder="Enter your password" required />
-                        <i class="uil uil-lock icon"></i>
-                        <i class="uil uil-eye-slash showHidePw"></i>                    
-                    </div>
-                    {errors?.password ? <span className="text-danger">{errors.password}</span> : null}
+                            <div className="input-field">
+                                <input type="text" onChange={e => setStudent_no(e.target.value)} placeholder="Enter your username" required />
+                                <i className="uil uil-user"></i>
+                            </div>
+                            {errors?.student_no ? <span className="text-danger">{errors.student_no}</span> : null}
 
-                    <div class="checkbox-text">
-                        <div class="checkbox-content">
-                            <input type="checkbox" id="logCheck" />
-                            <label for="logCheck" class="text">Remember me</label>
+                            <div className="input-field">
+                                <input type={show ? "text" : "password"} onChange={e => setPassword(e.target.value)} className="password" placeholder="Enter your password" required />
+                                <i className="uil uil-lock icon"></i>
+                                <i className={show ? "uil uil-eye showHidePw" : "uil uil-eye-slash showHidePw"} onClick={() => setShow(!show)}></i>
+                            </div>
+                            {errors?.password ? <span className="text-danger">{errors.password}</span> : null}
+
+                            <div className="checkbox-text">
+                                <div className="checkbox-content">
+                                    <input type="checkbox" id="logCheck" />
+                                    <label htmlFor="logCheck" className="text">Remember me</label>
+                                </div>
+                                <Link to="/forgotPassword" className="text">Forgot password?</Link>
+                            </div>
+
+                            <div className="input-field button">
+                                <input type="button" value="Login Now" onClick={login} />
+                            </div>
+                        </form>
+
+                        <div className="login-signup">
+                            <span className="text">
+                                <Link to="/adminLogin" className="text signup-link"> Admin Login</Link>
+                            </span>
                         </div>
-                        
-                        <Link to="/forgotPassword" class="text">Forgot password?</Link>
-                    </div>
 
-                    <div class="input-field button">
-                        <input type="button" value="Login Now" onClick={login} />
-                    </div>
-                </form>
+                        {/* <div className="login-signup">
+                            <span className="text">Not a member?
+                                <Link to="/register" className="text signup-link"> Register</Link>
+                            </span>
+                        </div> */}
 
-                <div class="login-signup">
-                    <span class="text">Not a member?
-                        <Link to="/register" class="text signup-link"> Signup now</Link>
-                    </span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
     )
 }
